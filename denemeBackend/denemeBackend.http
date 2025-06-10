@@ -1,0 +1,49 @@
+@denemeBackend_HostAddress = http://localhost:5194
+@baseUrl = https://localhost:5001
+@token = your-jwt-token-here
+
+GET {{denemeBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+### Register a new user
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "Admin123!",
+    "firstName": "Admin",
+    "lastName": "User"
+}
+
+### Login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "Admin123!"
+}
+
+### Refresh Token
+POST {{baseUrl}}/api/auth/refresh-token
+Content-Type: application/json
+
+{
+    "refreshToken": "your-refresh-token-here"
+}
+
+### Get Current User Info
+GET {{baseUrl}}/api/auth/me
+Authorization: Bearer {{token}}
+
+### Revoke Token
+POST {{baseUrl}}/api/auth/revoke-token
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "refreshToken": "your-refresh-token-here"
+}
+
+###
